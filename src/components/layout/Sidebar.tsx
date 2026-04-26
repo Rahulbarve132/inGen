@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import { Activity, LayoutDashboard, Bell, Server, X } from 'lucide-react';
+import { Activity, LayoutDashboard, Bell, Server, X, TrendingUp } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
@@ -11,6 +11,7 @@ const navItems = [
   { icon: Activity,        label: 'Analytics',  href: '/analytics' },
   { icon: Bell,            label: 'Alerts',     href: '/alerts' },
   { icon: Server,          label: 'Devices',    href: '/devices' },
+  { icon: TrendingUp,      label: 'Predictions',href: '/prediction' },
 ];
 
 export function Sidebar() {
