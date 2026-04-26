@@ -31,10 +31,18 @@ export function Sidebar() {
     <>
       {/* Logo row */}
       <div className="p-5 sm:p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
-        <h1 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-          <Activity className="text-blue-500" size={22} />
-          GenMonitor
-        </h1>
+        <Link href="/" className="flex items-center gap-2 outline-none">
+          <img src="/logo.png" alt="InGen Logo" className="h-10 w-auto object-contain" onError={(e) => { 
+            e.currentTarget.style.display = 'none'; 
+            if (e.currentTarget.nextElementSibling) {
+              (e.currentTarget.nextElementSibling as HTMLElement).style.display = 'flex';
+            }
+          }} />
+          <h1 className="text-xl font-bold text-slate-900 dark:text-white items-center gap-2 hidden" style={{ display: 'none' }}>
+            <Activity className="text-blue-500" size={22} />
+            GenMonitor
+          </h1>
+        </Link>
         {/* Close btn only in mobile drawer */}
         <button
           onClick={close}

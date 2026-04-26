@@ -27,13 +27,16 @@ export function Header() {
           <Menu size={22} />
         </button>
 
-        <div className="min-w-0">
-          <h2 className="text-base sm:text-xl font-bold text-slate-900 dark:text-white tracking-tight truncate leading-tight">
-            Generator Monitoring System
-          </h2>
-          <p className="text-xs text-slate-500 dark:text-slate-400 font-mono mt-0.5 hidden sm:block">
-            {currentTime || '—'}
-          </p>
+        <div className="flex items-center gap-2 min-w-0">
+          <img src="/logo.png" alt="InGen Logo" className="h-8 sm:h-10 w-auto object-contain" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
+          <div className="min-w-0 flex flex-col justify-center">
+            <h2 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white tracking-tight truncate leading-tight">
+              Generator Monitoring System
+            </h2>
+            <p className="text-xs text-slate-500 dark:text-slate-400 font-mono hidden sm:block leading-none">
+              {currentTime || '—'}
+            </p>
+          </div>
         </div>
       </div>
 
