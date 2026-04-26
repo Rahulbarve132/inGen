@@ -35,16 +35,16 @@ export function MetricStatsTable({ data }: { data: GeneratorData[] }) {
   }, [data]);
 
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4 sm:p-6">
+    <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 sm:p-6">
       <div className="mb-4 sm:mb-5">
-        <h3 className="text-base sm:text-lg font-semibold text-white">Aggregated Metric Statistics</h3>
-        <p className="text-xs sm:text-sm text-slate-400 mt-0.5">Computed across all currently filtered readings</p>
+        <h3 className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white">Aggregated Metric Statistics</h3>
+        <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5">Computed across all currently filtered readings</p>
       </div>
       <div className="overflow-x-auto -mx-4 sm:mx-0">
         <div className="min-w-[480px] sm:min-w-0 px-4 sm:px-0">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-slate-800">
+              <tr className="border-b border-slate-200 dark:border-slate-800">
                 <th className="text-left text-xs font-semibold text-slate-500 uppercase tracking-wider pb-3 pr-3">Metric</th>
                 <th className="text-right text-xs font-semibold text-slate-500 uppercase tracking-wider pb-3 px-3">
                   <span className="flex items-center justify-end gap-1"><TrendingDown size={12} className="text-emerald-500" />Min</span>
@@ -62,12 +62,12 @@ export function MetricStatsTable({ data }: { data: GeneratorData[] }) {
             </thead>
             <tbody className="divide-y divide-slate-800/60">
               {rows.map(row => (
-                <tr key={row.label} className="hover:bg-slate-800/30 transition-colors">
+                <tr key={row.label} className="hover:bg-slate-100 dark:bg-slate-800/30 transition-colors">
                   <td className="py-3 sm:py-4 pr-3">
                     <div className="flex items-center gap-2.5">
                       <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: row.color }} />
                       <div>
-                        <span className="text-xs sm:text-sm font-semibold text-white">{row.label}</span>
+                        <span className="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white">{row.label}</span>
                         <span className="text-xs text-slate-500 ml-1">({row.unit})</span>
                       </div>
                     </div>
@@ -82,7 +82,7 @@ export function MetricStatsTable({ data }: { data: GeneratorData[] }) {
                     <span className="font-mono text-xs sm:text-sm text-red-400 font-medium">{row.max}</span>
                   </td>
                   <td className="py-3 sm:py-4 text-right pl-3">
-                    <span className="font-mono text-xs sm:text-sm text-slate-400">{row.stddev}</span>
+                    <span className="font-mono text-xs sm:text-sm text-slate-500 dark:text-slate-400">{row.stddev}</span>
                   </td>
                 </tr>
               ))}

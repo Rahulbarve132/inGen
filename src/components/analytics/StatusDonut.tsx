@@ -27,10 +27,10 @@ export function StatusDonut({ data }: StatusDonutProps) {
   }, [data]);
 
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4 sm:p-6 h-[280px] sm:h-[350px] flex flex-col">
+    <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 sm:p-6 h-[280px] sm:h-[350px] flex flex-col">
       <div className="mb-3 sm:mb-4">
-        <h3 className="text-base sm:text-lg font-semibold text-white">Status Distribution</h3>
-        <p className="text-xs sm:text-sm text-slate-400">Reading health breakdown</p>
+        <h3 className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white">Status Distribution</h3>
+        <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">Reading health breakdown</p>
       </div>
       <div className="flex-1 min-h-0 relative">
         <ResponsiveContainer width="100%" height="100%">
@@ -62,7 +62,7 @@ export function StatusDonut({ data }: StatusDonutProps) {
         {/* Center label */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none" style={{ paddingBottom: '30px' }}>
           <div className="text-center">
-            <div className="text-3xl font-bold text-white">{total.toLocaleString()}</div>
+            <div className="text-3xl font-bold text-slate-900 dark:text-white">{total.toLocaleString()}</div>
             <div className="text-xs text-slate-500 mt-0.5">readings</div>
           </div>
         </div>

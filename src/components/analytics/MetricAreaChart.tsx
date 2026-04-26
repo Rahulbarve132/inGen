@@ -15,9 +15,9 @@ interface MetricAreaChartProps {
 export function MetricAreaChart({ data, dataKey, color, title, unit }: MetricAreaChartProps) {
   const gradId = `grad-${String(dataKey)}`;
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4 sm:p-6 h-[240px] sm:h-[300px] flex flex-col">
+    <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 sm:p-6 h-[240px] sm:h-[300px] flex flex-col">
       <div className="mb-3 sm:mb-4 flex items-center justify-between">
-        <h3 className="text-base sm:text-lg font-semibold text-white">{title}</h3>
+        <h3 className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white">{title}</h3>
         <span
           className="text-xs font-bold px-3 py-1 rounded-full"
           style={{ backgroundColor: `${color}20`, color }}

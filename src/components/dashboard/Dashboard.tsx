@@ -48,7 +48,7 @@ export function Dashboard() {
 
   if (error) return (
     <div className="flex items-center justify-center h-full">
-      <div className="bg-red-500/10 text-red-500 p-8 rounded-2xl border border-red-500/20 text-center max-w-md shadow-2xl shadow-red-900/20">
+      <div className="bg-red-50 dark:bg-red-500/10 text-red-500 p-8 rounded-2xl border border-red-500/20 text-center max-w-md shadow-2xl shadow-red-900/20">
         <AlertTriangle className="mx-auto mb-4" size={48} />
         <h3 className="text-xl font-bold mb-2">Error Loading Data</h3>
         <p className="text-sm opacity-80">Failed to connect to the telemetry API endpoint. Please check your connection.</p>
@@ -60,10 +60,10 @@ export function Dashboard() {
     <div className="flex items-center justify-center h-[70vh]">
       <div className="flex flex-col items-center">
         <div className="relative w-16 h-16 mb-4">
-          <div className="absolute inset-0 border-4 border-slate-800 rounded-full"></div>
+          <div className="absolute inset-0 border-4 border-slate-200 dark:border-slate-800 rounded-full"></div>
           <div className="absolute inset-0 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
         </div>
-        <p className="text-slate-400 font-medium tracking-wide">INITIALIZING TELEMETRY STREAM...</p>
+        <p className="text-slate-500 dark:text-slate-400 font-medium tracking-wide">INITIALIZING TELEMETRY STREAM...</p>
       </div>
     </div>
   );
@@ -71,25 +71,25 @@ export function Dashboard() {
   return (
     <div className="space-y-4 sm:space-y-6">
       {/* Device Selector & Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-slate-900/50 p-4 rounded-2xl border border-slate-800">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white/50 dark:bg-slate-900/50 p-4 rounded-2xl border border-slate-200 dark:border-slate-800">
         <div>
-          <h1 className="text-xl sm:text-2xl font-bold text-white tracking-tight">System Overview</h1>
-          <p className="text-slate-400 text-xs sm:text-sm mt-0.5">Real-time monitoring and analytics</p>
+          <h1 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">System Overview</h1>
+          <p className="text-slate-500 dark:text-slate-400 text-xs sm:text-sm mt-0.5">Real-time monitoring and analytics</p>
         </div>
         <div className="flex items-center gap-3">
-          <label className="text-sm font-medium text-slate-400">Select Device:</label>
+          <label className="text-sm font-medium text-slate-500 dark:text-slate-400">Select Device:</label>
           <div className="relative">
             <select 
               value={selectedDevice}
               onChange={(e) => setSelectedDevice(e.target.value)}
-              className="bg-slate-800 border border-slate-700 text-white rounded-xl px-4 py-2 focus:ring-2 focus:ring-blue-500 outline-none appearance-none cursor-pointer pr-10 shadow-sm transition-all hover:border-slate-600 font-medium"
+              className="bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white rounded-xl px-4 py-2 focus:ring-2 focus:ring-blue-500 outline-none appearance-none cursor-pointer pr-10 shadow-sm transition-all hover:border-slate-600 font-medium"
             >
               {uniqueDevices.map(dev => (
                 <option key={dev} value={dev}>{dev.toUpperCase()}</option>
               ))}
             </select>
             <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-slate-400"><path d="m6 9 6 6 6-6"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-slate-500 dark:text-slate-400"><path d="m6 9 6 6 6-6"/></svg>
             </div>
           </div>
         </div>
@@ -97,7 +97,7 @@ export function Dashboard() {
 
       {/* Alert System */}
       {anomalies.length > 0 && (
-        <div className="bg-red-500/10 border border-red-500/20 rounded-2xl p-5 flex items-start gap-4 shadow-lg shadow-red-900/5 animate-in fade-in slide-in-from-top-4">
+        <div className="bg-red-50 dark:bg-red-500/10 border border-red-500/20 rounded-2xl p-5 flex items-start gap-4 shadow-lg shadow-red-900/5 animate-in fade-in slide-in-from-top-4">
           <div className="bg-red-500/20 text-red-500 p-2.5 rounded-xl shadow-inner">
             <AlertTriangle size={24} />
           </div>

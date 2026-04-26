@@ -28,10 +28,10 @@ export function FleetComparisonChart({ data }: FleetComparisonChartProps) {
   }, [data]);
 
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4 sm:p-6 h-[280px] sm:h-[350px] flex flex-col">
+    <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 sm:p-6 h-[280px] sm:h-[350px] flex flex-col">
       <div className="mb-3 sm:mb-4">
-        <h3 className="text-base sm:text-lg font-semibold text-white">Fleet Performance Comparison</h3>
-        <p className="text-xs sm:text-sm text-slate-400">Average values per device across selected time range</p>
+        <h3 className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white">Fleet Performance Comparison</h3>
+        <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">Average values per device across selected time range</p>
       </div>
       <div className="flex-1 min-h-0">
         <ResponsiveContainer width="100%" height="100%">

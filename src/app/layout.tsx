@@ -3,6 +3,7 @@ import './globals.css';
 import { Sidebar } from '@/components/layout/Sidebar';
 import { Header } from '@/components/layout/Header';
 import { SidebarProvider } from '@/components/layout/SidebarContext';
+import { ThemeProvider } from '@/components/ThemeProvider';
 
 export const metadata: Metadata = {
   title: 'Generator Monitoring System',
@@ -15,11 +16,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="antialiased bg-slate-950 text-slate-50 overflow-x-hidden">
-        <SidebarProvider>
-          {/* Outer flex: sidebar (desktop) | content column */}
-          <div className="flex min-h-screen">
+    <html lang="en" suppressHydrationWarning>
+      <body className="antialiased bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-50 overflow-x-hidden min-h-screen">
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <SidebarProvider>
+            {/* Outer flex: sidebar (desktop) | content column */}
+            <div className="flex min-h-screen">
             {/* Sidebar: sticky on desktop, drawer on mobile */}
             <Sidebar />
 
@@ -32,6 +34,7 @@ export default function RootLayout({
             </div>
           </div>
         </SidebarProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

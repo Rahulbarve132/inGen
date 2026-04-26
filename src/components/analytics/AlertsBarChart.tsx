@@ -39,11 +39,11 @@ export function AlertsBarChart({ data }: AlertsBarChartProps) {
   }, [data]);
 
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 h-[350px] flex flex-col">
+    <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 h-[350px] flex flex-col">
       <div className="mb-4 flex items-start justify-between">
         <div>
-          <h3 className="text-lg font-semibold text-white">Alert Distribution by Device</h3>
-          <p className="text-sm text-slate-400 mt-0.5">Threshold breach counts per device</p>
+          <h3 className="text-lg font-semibold text-slate-900 dark:text-white">Alert Distribution by Device</h3>
+          <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">Threshold breach counts per device</p>
         </div>
         <div className="flex flex-wrap gap-2 justify-end">
           {Object.entries(THRESHOLDS).map(([key, { label, color }]) => (

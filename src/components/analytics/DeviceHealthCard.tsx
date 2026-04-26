@@ -36,15 +36,15 @@ export function DeviceHealthCard({ deviceId, data }: DeviceHealthCardProps) {
     'Critical';
 
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 hover:border-slate-700 transition-colors">
+    <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 hover:border-slate-300 dark:border-slate-700 transition-colors">
       {/* Header */}
       <div className="flex items-start justify-between mb-5">
         <div className="flex items-center gap-3">
-          <div className="p-2.5 bg-slate-800 rounded-xl">
-            <Server size={20} className="text-slate-400" />
+          <div className="p-2.5 bg-slate-100 dark:bg-slate-800 rounded-xl">
+            <Server size={20} className="text-slate-500 dark:text-slate-400" />
           </div>
           <div>
-            <h3 className="text-base font-bold text-white">{deviceId.toUpperCase()}</h3>
+            <h3 className="text-base font-bold text-slate-900 dark:text-white">{deviceId.toUpperCase()}</h3>
             <p className="text-xs text-slate-500">{stats.total} readings</p>
           </div>
         </div>
@@ -55,7 +55,7 @@ export function DeviceHealthCard({ deviceId, data }: DeviceHealthCardProps) {
       </div>
 
       {/* Health bar */}
-      <div className="w-full bg-slate-800 rounded-full h-1.5 mb-5 overflow-hidden">
+      <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-1.5 mb-5 overflow-hidden">
         <div
           className="h-1.5 rounded-full transition-all duration-700"
           style={{ width: `${stats.healthScore}%`, backgroundColor: healthColor }}
@@ -82,11 +82,11 @@ export function DeviceHealthCard({ deviceId, data }: DeviceHealthCardProps) {
       <div className="space-y-2 text-sm">
         <div className="flex items-center justify-between">
           <span className="text-slate-500">Avg Temperature</span>
-          <span className="text-slate-200 font-mono font-medium">{stats.avgTemp} °C</span>
+          <span className="text-slate-800 dark:text-slate-200 font-mono font-medium">{stats.avgTemp} °C</span>
         </div>
         <div className="flex items-center justify-between">
           <span className="text-slate-500">Avg Vibration</span>
-          <span className="text-slate-200 font-mono font-medium">{stats.avgVib} mm/s</span>
+          <span className="text-slate-800 dark:text-slate-200 font-mono font-medium">{stats.avgVib} mm/s</span>
         </div>
         <div className="flex items-center justify-between">
           <span className="text-slate-500">Last Fuel Level</span>

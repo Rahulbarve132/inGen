@@ -52,7 +52,7 @@ const TYPE_ICON: Record<Exclude<AlertType, 'all'>, React.ReactNode> = {
 
 const SEVERITY_STYLE = {
   CRITICAL: {
-    row:    'border-red-500/20 bg-red-500/5 hover:bg-red-500/10',
+    row:    'border-red-500/20 bg-red-500/5 hover:bg-red-50 dark:bg-red-500/10',
     badge:  'bg-red-500/20 text-red-400 border border-red-500/30',
     dot:    'bg-red-500',
     icon:   'bg-red-500/20 text-red-400',
@@ -110,14 +110,14 @@ export default function AlertsPage() {
     <div className="space-y-4 sm:space-y-6">
 
       {/* ── Header ── */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-slate-900/50 p-4 rounded-2xl border border-slate-800">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white/50 dark:bg-slate-900/50 p-4 rounded-2xl border border-slate-200 dark:border-slate-800">
         <div>
-          <h1 className="text-xl sm:text-2xl font-bold text-white tracking-tight">System Alerts</h1>
-          <p className="text-slate-400 text-xs sm:text-sm mt-0.5">Real-time threshold breach monitoring across all generator devices</p>
+          <h1 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">System Alerts</h1>
+          <p className="text-slate-500 dark:text-slate-400 text-xs sm:text-sm mt-0.5">Real-time threshold breach monitoring across all generator devices</p>
         </div>
         <button
           onClick={() => mutate()}
-          className="self-start sm:self-auto flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 rounded-xl px-3 py-2 text-xs sm:text-sm font-medium transition-all"
+          className="self-start sm:self-auto flex items-center gap-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:text-white border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-xs sm:text-sm font-medium transition-all"
         >
           <RefreshCw size={13} />
           Refresh
@@ -127,11 +127,11 @@ export default function AlertsPage() {
       {/* ── KPI Summary Strip ── */}
       {!isLoading && (
         <div className="grid grid-cols-3 sm:grid-cols-5 gap-2 sm:gap-3">
-          <div className="bg-red-500/10 border border-red-500/20 rounded-xl sm:rounded-2xl p-3 sm:p-4 text-center">
+          <div className="bg-red-50 dark:bg-red-500/10 border border-red-500/20 rounded-xl sm:rounded-2xl p-3 sm:p-4 text-center">
             <div className="text-xl sm:text-2xl font-bold text-red-400">{summary.critical}</div>
             <div className="text-xs text-red-400/70 mt-1 font-semibold uppercase tracking-wide">Critical</div>
           </div>
-          <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-xl sm:rounded-2xl p-3 sm:p-4 text-center">
+          <div className="bg-yellow-50 dark:bg-yellow-500/10 border border-yellow-500/20 rounded-xl sm:rounded-2xl p-3 sm:p-4 text-center">
             <div className="text-xl sm:text-2xl font-bold text-yellow-400">{summary.warning}</div>
             <div className="text-xs text-yellow-400/70 mt-1 font-semibold uppercase tracking-wide">Warning</div>
           </div>
@@ -154,25 +154,25 @@ export default function AlertsPage() {
       )}
 
       {/* ── Filters ── */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-3 sm:p-4">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-3 sm:p-4">
         <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-          <div className="flex items-center gap-1.5 text-slate-400 text-xs sm:text-sm">
+          <div className="flex items-center gap-1.5 text-slate-500 dark:text-slate-400 text-xs sm:text-sm">
             <Filter size={13} />
             <span className="font-medium">Filters:</span>
           </div>
 
           {/* Severity pill group */}
-          <div className="flex items-center bg-slate-800 rounded-xl p-0.5 gap-0.5">
+          <div className="flex items-center bg-slate-100 dark:bg-slate-800 rounded-xl p-0.5 gap-0.5">
             {(['all', 'CRITICAL', 'WARNING'] as SeverityFilter[]).map(s => (
               <button
                 key={s}
                 onClick={() => setSeverity(s)}
                 className={`px-2.5 sm:px-3 py-1 text-xs font-semibold rounded-lg transition-all ${
                   severityFilter === s
-                    ? s === 'CRITICAL' ? 'bg-red-600 text-white'
-                    : s === 'WARNING'  ? 'bg-yellow-600 text-white'
-                    : 'bg-blue-600 text-white'
-                    : 'text-slate-400 hover:text-white'
+                    ? s === 'CRITICAL' ? 'bg-red-600 text-slate-900 dark:text-white'
+                    : s === 'WARNING'  ? 'bg-yellow-600 text-slate-900 dark:text-white'
+                    : 'bg-blue-600 text-slate-900 dark:text-white'
+                    : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:text-white'
                 }`}
               >
                 {s === 'all' ? 'All' : s}
@@ -184,7 +184,7 @@ export default function AlertsPage() {
           <select
             value={typeFilter}
             onChange={e => setTypeFilter(e.target.value as AlertType)}
-            className="bg-slate-800 border border-slate-700 text-white rounded-xl px-2.5 py-1.5 text-xs focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer"
+            className="bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white rounded-xl px-2.5 py-1.5 text-xs focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer"
           >
             {TYPE_FILTER_OPTIONS.map(({ label }) => (
               <option key={label} value={label}>{label === 'all' ? 'All Types' : label}</option>
@@ -195,40 +195,40 @@ export default function AlertsPage() {
           <select
             value={deviceFilter}
             onChange={e => setDeviceFilter(e.target.value)}
-            className="bg-slate-800 border border-slate-700 text-white rounded-xl px-2.5 py-1.5 text-xs focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer"
+            className="bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white rounded-xl px-2.5 py-1.5 text-xs focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer"
           >
             <option value="all">All Devices</option>
             {devices.map(d => <option key={d} value={d}>{d.toUpperCase()}</option>)}
           </select>
 
           <span className="ml-auto text-xs text-slate-500 whitespace-nowrap">
-            <span className="text-white font-semibold">{filtered.length}</span> / {alerts.length}
+            <span className="text-slate-900 dark:text-white font-semibold">{filtered.length}</span> / {alerts.length}
           </span>
         </div>
       </div>
 
       {/* ── Alert List ── */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden">
         {isLoading ? (
           <div className="flex items-center justify-center py-20">
             <div className="flex flex-col items-center gap-4">
               <div className="relative w-12 h-12">
-                <div className="absolute inset-0 border-4 border-slate-800 rounded-full" />
+                <div className="absolute inset-0 border-4 border-slate-200 dark:border-slate-800 rounded-full" />
                 <div className="absolute inset-0 border-4 border-red-500 border-t-transparent rounded-full animate-spin" />
               </div>
-              <p className="text-slate-400 text-sm tracking-widest">LOADING ALERTS...</p>
+              <p className="text-slate-500 dark:text-slate-400 text-sm tracking-widest">LOADING ALERTS...</p>
             </div>
           </div>
         ) : filtered.length === 0 ? (
           <div className="flex items-center justify-center py-20 flex-col gap-3">
             <AlertTriangle size={36} className="text-slate-700" />
-            <p className="text-slate-400 font-semibold text-sm">No alerts match the current filters</p>
+            <p className="text-slate-500 dark:text-slate-400 font-semibold text-sm">No alerts match the current filters</p>
             <p className="text-slate-600 text-xs">Try adjusting the severity or type filter</p>
           </div>
         ) : (
           <>
             {/* Desktop table header — hidden on mobile */}
-            <div className="hidden sm:grid sm:grid-cols-[1.5rem_2fr_1fr_1.2fr_1fr_1fr_auto] gap-3 px-5 py-3 border-b border-slate-800 text-xs font-semibold text-slate-500 uppercase tracking-wider">
+            <div className="hidden sm:grid sm:grid-cols-[1.5rem_2fr_1fr_1.2fr_1fr_1fr_auto] gap-3 px-5 py-3 border-b border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-500 uppercase tracking-wider">
               <span />
               <span>Alert Type</span>
               <span>Device</span>
@@ -251,7 +251,7 @@ export default function AlertsPage() {
                       <div className="flex items-center gap-2">
                         <div className={`p-1.5 rounded-lg ${s.icon}`}>{TYPE_ICON[alert.type]}</div>
                         <div>
-                          <div className="text-sm font-semibold text-white">{alert.type}</div>
+                          <div className="text-sm font-semibold text-slate-900 dark:text-white">{alert.type}</div>
                           <div className="text-xs text-slate-500">{alert.metric}</div>
                         </div>
                       </div>
@@ -277,10 +277,10 @@ export default function AlertsPage() {
                       {/* Content */}
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 flex-wrap mb-1">
-                          <span className="text-sm font-bold text-white">{alert.type}</span>
+                          <span className="text-sm font-bold text-slate-900 dark:text-white">{alert.type}</span>
                           <span className={`text-xs font-bold px-1.5 py-0.5 rounded-full ${s.badge}`}>{alert.severity}</span>
                         </div>
-                        <div className="flex flex-wrap gap-x-3 gap-y-0.5 text-xs text-slate-400">
+                        <div className="flex flex-wrap gap-x-3 gap-y-0.5 text-xs text-slate-500 dark:text-slate-400">
                           <span className="font-mono font-semibold text-blue-400">{alert.deviceId.toUpperCase()}</span>
                           <span className="font-mono font-bold" style={{ color: alert.severity === 'CRITICAL' ? '#ef4444' : '#eab308' }}>{alert.value}</span>
                           <span className="text-slate-600">{alert.threshold}</span>

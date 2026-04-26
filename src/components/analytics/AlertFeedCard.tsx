@@ -47,13 +47,13 @@ export function AlertFeedCard({ data, limit = 12 }: { data: GeneratorData[]; lim
   const alerts = useMemo(() => classifyAlerts(data).slice(0, limit), [data, limit]);
 
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col">
+    <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 flex flex-col">
       <div className="flex items-center justify-between mb-5">
         <div>
-          <h3 className="text-lg font-semibold text-white">Recent Alert Feed</h3>
-          <p className="text-sm text-slate-400 mt-0.5">Latest threshold breaches in the selected window</p>
+          <h3 className="text-lg font-semibold text-slate-900 dark:text-white">Recent Alert Feed</h3>
+          <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">Latest threshold breaches in the selected window</p>
         </div>
-        <span className="text-xs font-semibold bg-red-500/10 text-red-400 border border-red-500/20 px-2.5 py-1 rounded-full flex items-center gap-1.5">
+        <span className="text-xs font-semibold bg-red-50 dark:bg-red-500/10 text-red-400 border border-red-500/20 px-2.5 py-1 rounded-full flex items-center gap-1.5">
           <AlertTriangle size={12} />
           {alerts.length} events
         </span>
@@ -70,7 +70,7 @@ export function AlertFeedCard({ data, limit = 12 }: { data: GeneratorData[]; lim
             return (
               <div
                 key={`${evt.deviceId}-${evt.timestamp}-${evt.type}-${i}`}
-                className="flex items-center gap-3 bg-slate-800/40 hover:bg-slate-800/70 border border-slate-800 rounded-xl px-4 py-3 transition-colors"
+                className="flex items-center gap-3 bg-slate-100 dark:bg-slate-800/40 hover:bg-slate-100 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 transition-colors"
               >
                 {/* Severity dot */}
                 <div className={`w-2 h-2 rounded-full flex-shrink-0 ${s.dot}`} />
@@ -84,11 +84,11 @@ export function AlertFeedCard({ data, limit = 12 }: { data: GeneratorData[]; lim
                     <span className={`text-xs font-bold px-2 py-0.5 rounded-full border ${s.badge}`}>
                       {evt.severity}
                     </span>
-                    <span className="text-sm font-semibold text-white">{evt.type}</span>
+                    <span className="text-sm font-semibold text-slate-900 dark:text-white">{evt.type}</span>
                     <span className="text-xs text-slate-500">on {evt.deviceId.toUpperCase()}</span>
                   </div>
                   <div className="flex items-center gap-3 mt-0.5">
-                    <span className="font-mono text-xs text-slate-400">{evt.value}</span>
+                    <span className="font-mono text-xs text-slate-500 dark:text-slate-400">{evt.value}</span>
                     <span className="text-xs text-slate-600">
                       {new Date(evt.timestamp).toLocaleString([], { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
                     </span>

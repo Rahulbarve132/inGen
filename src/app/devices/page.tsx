@@ -54,7 +54,7 @@ function calcDeviceStats(records: GeneratorData[]) {
 
 function MiniBar({ pct, color }: { pct: number; color: string }) {
   return (
-    <div className="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
+    <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-1.5 overflow-hidden">
       <div className="h-1.5 rounded-full transition-all duration-700" style={{ width: `${Math.min(100, pct)}%`, backgroundColor: color }} />
     </div>
   );
@@ -69,12 +69,12 @@ function MetricRow({
   return (
     <div className="space-y-1.5">
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2 text-slate-400">
+        <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400">
           <span style={{ color }}>{icon}</span>
           <span className="text-xs font-semibold uppercase tracking-wide">{label}</span>
         </div>
         <div className="text-right">
-          <span className="font-mono font-bold text-white">{value}</span>
+          <span className="font-mono font-bold text-slate-900 dark:text-white">{value}</span>
           <span className="text-xs text-slate-500 ml-1">{unit}</span>
         </div>
       </div>
@@ -101,10 +101,10 @@ function DeviceCard({ deviceId, data }: { deviceId: string; data: GeneratorData[
   }[currentStatus];
 
   return (
-    <div className={`bg-slate-900 border rounded-2xl overflow-hidden transition-all duration-300 ${
+    <div className={`bg-white dark:bg-slate-900 border rounded-2xl overflow-hidden transition-all duration-300 ${
       currentStatus === 'CRITICAL' ? 'border-red-500/30' :
       currentStatus === 'WARNING'  ? 'border-yellow-500/25' :
-      'border-slate-800 hover:border-slate-700'
+      'border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:border-slate-700'
     }`}>
       {/* Card Header */}
       <div className="p-4 sm:p-5">
@@ -113,16 +113,16 @@ function DeviceCard({ deviceId, data }: { deviceId: string; data: GeneratorData[
             <div className={`p-2.5 rounded-xl ${
               currentStatus === 'CRITICAL' ? 'bg-red-500/20' :
               currentStatus === 'WARNING'  ? 'bg-yellow-500/20' :
-              'bg-slate-800'
+              'bg-slate-100 dark:bg-slate-800'
             }`}>
               <Server size={20} className={
                 currentStatus === 'CRITICAL' ? 'text-red-400' :
                 currentStatus === 'WARNING'  ? 'text-yellow-400' :
-                'text-slate-400'
+                'text-slate-500 dark:text-slate-400'
               } />
             </div>
             <div>
-              <h3 className="text-lg font-bold text-white tracking-tight">{deviceId.toUpperCase()}</h3>
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white tracking-tight">{deviceId.toUpperCase()}</h3>
               <p className="text-xs text-slate-500">{stats.total} readings recorded</p>
             </div>
           </div>
@@ -133,7 +133,7 @@ function DeviceCard({ deviceId, data }: { deviceId: string; data: GeneratorData[
         </div>
 
         {/* Health bar */}
-        <div className="w-full bg-slate-800 rounded-full h-2 mb-4 overflow-hidden">
+        <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2 mb-4 overflow-hidden">
           <div className="h-2 rounded-full transition-all duration-700" style={{ width: `${stats.healthScore}%`, backgroundColor: hColor }} />
         </div>
 
@@ -142,10 +142,10 @@ function DeviceCard({ deviceId, data }: { deviceId: string; data: GeneratorData[
           <span className={`text-xs font-bold px-2.5 py-1 rounded-full border ${statusStyle}`}>
             {currentStatus === 'CRITICAL' ? '⚠ CRITICAL' : currentStatus === 'WARNING' ? '⚡ WARNING' : '✓ NORMAL'}
           </span>
-          <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center gap-1.5">
+          <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center gap-1.5">
             <Wifi size={11} /> Online
           </span>
-          <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-800 text-slate-400 flex items-center gap-1.5">
+          <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
             <Clock size={11} />
             {new Date(stats.latest.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
           </span>
@@ -189,7 +189,7 @@ function DeviceCard({ deviceId, data }: { deviceId: string; data: GeneratorData[
       </div>
 
       {/* Status breakdown bar */}
-      <div className="grid grid-cols-3 divide-x divide-slate-800 border-t border-slate-800">
+      <div className="grid grid-cols-3 divide-x divide-slate-800 border-t border-slate-200 dark:border-slate-800">
         <div className="px-4 py-3 text-center bg-emerald-500/5">
           <div className="text-xl font-bold text-emerald-400">{stats.normalCount}</div>
           <div className="text-xs text-slate-500">Normal</div>
@@ -207,14 +207,14 @@ function DeviceCard({ deviceId, data }: { deviceId: string; data: GeneratorData[
       {/* Expand/collapse toggle */}
       <button
         onClick={() => setExpanded(v => !v)}
-        className="w-full flex items-center justify-center gap-2 py-2.5 text-xs text-slate-500 hover:text-slate-300 bg-slate-800/40 border-t border-slate-800 transition-colors"
+        className="w-full flex items-center justify-center gap-2 py-2.5 text-xs text-slate-500 hover:text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-800/40 border-t border-slate-200 dark:border-slate-800 transition-colors"
       >
         {expanded ? <><ChevronUp size={13} /> Hide alert details</> : <><ChevronDown size={13} /> Show alert details</>}
       </button>
 
       {/* Expanded alert breakdown */}
       {expanded && (
-        <div className="p-5 border-t border-slate-800 bg-slate-900/60">
+        <div className="p-5 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60">
           <h4 className="text-xs font-semibold uppercase text-slate-500 tracking-widest mb-3 flex items-center gap-2">
             <AlertTriangle size={12} className="text-red-400" /> Alert Breakdown
           </h4>
@@ -241,14 +241,14 @@ function DeviceCard({ deviceId, data }: { deviceId: string; data: GeneratorData[
           </div>
 
           {/* Time range info */}
-          <div className="mt-4 pt-4 border-t border-slate-800 grid grid-cols-2 gap-3 text-xs text-slate-500">
+          <div className="mt-4 pt-4 border-t border-slate-200 dark:border-slate-800 grid grid-cols-2 gap-3 text-xs text-slate-500">
             <div>
               <span className="block text-slate-600 mb-0.5">First reading</span>
-              <span className="text-slate-400 font-mono">{new Date(stats.oldest.timestamp).toLocaleString([], { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</span>
+              <span className="text-slate-500 dark:text-slate-400 font-mono">{new Date(stats.oldest.timestamp).toLocaleString([], { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</span>
             </div>
             <div>
               <span className="block text-slate-600 mb-0.5">Latest reading</span>
-              <span className="text-slate-400 font-mono">{new Date(stats.latest.timestamp).toLocaleString([], { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</span>
+              <span className="text-slate-500 dark:text-slate-400 font-mono">{new Date(stats.latest.timestamp).toLocaleString([], { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</span>
             </div>
           </div>
         </div>
@@ -282,14 +282,14 @@ export default function DevicesPage() {
   return (
     <div className="space-y-4 sm:space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-slate-900/50 p-4 rounded-2xl border border-slate-800">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white/50 dark:bg-slate-900/50 p-4 rounded-2xl border border-slate-200 dark:border-slate-800">
         <div>
-          <h1 className="text-xl sm:text-2xl font-bold text-white tracking-tight">Connected Devices</h1>
-          <p className="text-slate-400 text-xs sm:text-sm mt-0.5">Live generator status, metrics, and alert breakdowns per device</p>
+          <h1 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">Connected Devices</h1>
+          <p className="text-slate-500 dark:text-slate-400 text-xs sm:text-sm mt-0.5">Live generator status, metrics, and alert breakdowns per device</p>
         </div>
         <button
           onClick={() => mutate()}
-          className="self-start sm:self-auto flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 rounded-xl px-3 py-2 text-xs sm:text-sm font-medium transition-all"
+          className="self-start sm:self-auto flex items-center gap-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:text-white border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-xs sm:text-sm font-medium transition-all"
         >
           <RefreshCw size={13} />
           Refresh
@@ -299,9 +299,9 @@ export default function DevicesPage() {
       {/* Fleet summary strip */}
       {fleetSummary && (
         <div className="grid grid-cols-3 gap-3 sm:gap-4">
-          <div className="bg-slate-900 border border-slate-800 rounded-xl sm:rounded-2xl p-3 sm:p-5 text-center">
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl sm:rounded-2xl p-3 sm:p-5 text-center">
             <div className="flex justify-center mb-1 sm:mb-2"><Server size={16} className="text-blue-400" /></div>
-            <div className="text-2xl sm:text-3xl font-bold text-white">{fleetSummary.total}</div>
+            <div className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">{fleetSummary.total}</div>
             <div className="text-xs text-slate-500 mt-1 font-semibold uppercase tracking-wide">Devices</div>
           </div>
           <div className="bg-emerald-500/8 border border-emerald-500/20 rounded-xl sm:rounded-2xl p-3 sm:p-5 text-center">
@@ -322,10 +322,10 @@ export default function DevicesPage() {
         <div className="flex items-center justify-center py-24">
           <div className="flex flex-col items-center gap-4">
             <div className="relative w-12 h-12">
-              <div className="absolute inset-0 border-4 border-slate-800 rounded-full" />
+              <div className="absolute inset-0 border-4 border-slate-200 dark:border-slate-800 rounded-full" />
               <div className="absolute inset-0 border-4 border-blue-500 border-t-transparent rounded-full animate-spin" />
             </div>
-            <p className="text-slate-400 text-sm tracking-widest">CONNECTING TO DEVICES...</p>
+            <p className="text-slate-500 dark:text-slate-400 text-sm tracking-widest">CONNECTING TO DEVICES...</p>
           </div>
         </div>
       ) : (
@@ -341,9 +341,9 @@ export default function DevicesPage() {
       )}
 
       {/* Legend */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5">
-        <h3 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
-          <BarChart2 size={14} className="text-slate-400" />
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5">
+        <h3 className="text-sm font-semibold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
+          <BarChart2 size={14} className="text-slate-500 dark:text-slate-400" />
           Alert Thresholds Reference
         </h3>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">

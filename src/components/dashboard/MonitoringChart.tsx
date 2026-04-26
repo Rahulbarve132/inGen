@@ -12,10 +12,10 @@ interface MonitoringChartProps {
 
 export function MonitoringChart({ data, dataKey, color, title, unit }: MonitoringChartProps) {
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 h-[350px] flex flex-col">
+    <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 h-[350px] flex flex-col">
       <div className="mb-4 flex items-center justify-between">
-        <h3 className="text-lg font-semibold text-white">{title}</h3>
-        <span className="text-sm text-slate-400 px-3 py-1 bg-slate-800 rounded-full">{unit}</span>
+        <h3 className="text-lg font-semibold text-slate-900 dark:text-white">{title}</h3>
+        <span className="text-sm text-slate-500 dark:text-slate-400 px-3 py-1 bg-slate-100 dark:bg-slate-800 rounded-full">{unit}</span>
       </div>
       <div className="flex-1 min-h-0">
         <ResponsiveContainer width="100%" height="100%">
